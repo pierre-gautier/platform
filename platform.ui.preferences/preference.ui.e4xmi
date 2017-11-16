@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_EqKNcNjXEeaEK6nhz276Lg">
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_UyS4YIv1EeKn-ppld3kY1g" featurename="handlers" parentElementId="application">
+  <elements xsi:type="commands:Handler" xmi:id="_YyohUIv1EeKn-ppld3kY1g" elementId="handler.openPreferences" contributionURI="bundleclass://platform.ui.preferences/platform.ui.preferences.PreferencesHandler" command="_eZBiEIv1EeKn-ppld3kY1g" />
+ </fragments>
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Zq3J0Iv1EeKn-ppld3kY1g" featurename="commands" parentElementId="application">
+  <elements xsi:type="commands:Command" xmi:id="_eZBiEIv1EeKn-ppld3kY1g" elementId="command.openPreferences" commandName="Open Preferences" />
+ </fragments>
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_CAaW8DWMEeOlpOqCqQYYww" featurename="bindings" parentElementId="bindingtable" positionInList="first">
+  <elements xsi:type="commands:KeyBinding" xmi:id="_CAaW8TWMEeOlpOqCqQYYww" elementId="keyBinding.preference" keySequence="M1+P" command="_eZBiEIv1EeKn-ppld3kY1g" />
+ </fragments>
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_TqC8kGfDEeeAB-MyPaKvpA" featurename="children" parentElementId="org.eclipse.ui.main.menu">
+  <elements xsi:type="menu:Menu" xmi:id="_TqC8kWfDEeeAB-MyPaKvpA" elementId="menu.preference" label="Preference">
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_TqC8kmfDEeeAB-MyPaKvpA" elementId="handledmenuitem.preferences" label="Preferences" iconURI="" tooltip="" mnemonics="" command="_eZBiEIv1EeKn-ppld3kY1g" />
+  </elements>
+ </fragments>
+</fragment:ModelFragments>

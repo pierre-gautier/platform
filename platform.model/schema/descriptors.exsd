@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="platform.model" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+ <appinfo>
+  <meta.schema plugin="platform.model" id="descriptors" name="descriptors"/>
+ </appinfo>
+</annotation>
+
+ <element name="extension">
+  <complexType>
+   <sequence>
+    <element ref="descriptors" minOccurs="1" maxOccurs="unbounded"/>
+   </sequence>
+   <attribute name="id" type="string" />
+   <attribute name="name" type="string" /> 
+   <attribute name="point" type="string" use="required" />
+  </complexType>
+ </element>
+
+ <element name="descriptors">
+  <complexType>
+   <attribute name="class" type="string" use="required">
+    <annotation>
+     <appinfo>
+      <meta.attribute kind="java"/>
+     </appinfo>
+    </annotation>
+   </attribute>
+  </complexType>
+ </element>
+
+</schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension id="product" name="License" point="org.eclipse.core.runtime.products">
+      <product name="Licenses" application="org.eclipse.e4.ui.workbench.swt.E4Application">
+         <property name="lifeCycleURI" value="bundleclass://license.editor.application/license.editor.application.E4LifeCycle" />
+         <property name="applicationXMI" value="license.editor.application/Application.e4xmi" />
+         <property name="appName" value="Licenses" />
+         <property name="aboutImage" value="/icons/about.png" />
+         <property name="aboutText" value="%about" />
+      </product>
+   </extension>
+   <extension id="modelContribution" point="org.eclipse.e4.workbench.model">
+      <processor apply="always" beforefragment="false" class="license.editor.application.E4Processor"/>
+   </extension>
+</plugin>

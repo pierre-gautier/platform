@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.model.commons;singleton:=true
+Bundle-Activator: platform.model.commons.Activator
+Bundle-Name: Platform Commons
+Require-Bundle: platform.model;bundle-version="0.0.0";visibility:=reexport
+Export-Package: platform.model.commons;uses:="org.osgi.framework,platform.model"

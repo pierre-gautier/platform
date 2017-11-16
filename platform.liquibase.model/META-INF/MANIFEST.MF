@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.liquibase.model;singleton:=true
+Bundle-Activator: platform.liquibase.model.Activator
+Bundle-Name: Platform Liquibase Model
+Require-Bundle: platform.liquibase;bundle-version="0.0.0"
+Export-Package: platform.liquibase.model;uses:="org.osgi.framework"

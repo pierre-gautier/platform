@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+ <extension id="modelContribution" point="org.eclipse.e4.workbench.model">
+  <fragment uri="workbench.e4xmi" />
+ </extension>
+ <extension-point id="installationPages" name="%ExtPoint.installationPages" schema="schema/installationPages.exsd"/>
+ <extension-point id="systemSummarySections" name="%ExtPoint.systemSummarySections" schema="schema/systemSummarySections.exsd"/>
+ <extension point="platform.ui.workbench.installationPages">
+  <page name="Plugins" class="platform.ui.workbench.about.AboutPluginsPage" id="30.PluginPage" />
+  <page name="System" class="platform.ui.workbench.about.AboutSystemPage" id="31.SystemPage" />
+ </extension>
+ <extension point="platform.ui.workbench.systemSummarySections">
+  <section sectionTitle="Platform" class="platform.ui.workbench.about.ConfigurationLogDefaultSection" id="10.DefaultSection" />
+ </extension>
+</plugin>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension-point id="platform.sql.driver" name="platform.sql.driver" schema="schema/sql.driver.exsd"/>
+ <extension-point id="platform.sql.descriptor" name="platform.sql.descriptor" schema="schema/sql.descriptor.exsd"/>
+</plugin>

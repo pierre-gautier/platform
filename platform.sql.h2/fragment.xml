@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+ <extension point="platform.sql.driver">
+  <driver class="org.h2.Driver" />
+ </extension>
+ <extension point="platform.sql.descriptor">
+  <descriptor class="platform.sql.h2.H2DescriptorFactory" />
+ </extension>
+</fragment>

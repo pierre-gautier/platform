@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.model;singleton:=true
+Bundle-Activator: platform.model.Activator
+Bundle-Name: Platform Model
+Export-Package: platform.model;uses:="org.osgi.framework",
+ platform.model.factory,
+ platform.model.io,
+ platform.model.utils
+Require-Bundle: platform.utils;bundle-version="0.0.0";visibility:=reexport

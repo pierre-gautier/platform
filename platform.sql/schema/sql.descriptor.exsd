@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="platform.sql" xmlns="http://www.w3.org/2001/XMLSchema">
+ <annotation>
+  <appinfo>
+   <meta.schema plugin="platform.sql" id="descriptor" name="descriptor"/>
+  </appinfo>
+ </annotation>
+ <element name="extension">
+  <complexType>
+   <sequence>
+    <element ref="descriptor"/>
+   </sequence>
+   <attribute name="point" type="string" use="required" />
+  </complexType>
+ </element>
+ <element name="descriptor">
+  <complexType>
+   <attribute name="class" type="string" use="required">
+    <annotation>
+     <appinfo>
+      <meta.attribute kind="java" basedOn=":platform.sql.IDatabaseDescriptorFactory"/>
+     </appinfo>
+    </annotation>
+   </attribute>
+  </complexType>
+ </element>
+</schema>

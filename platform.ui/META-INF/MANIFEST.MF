@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.ui;singleton:=true
+Bundle-Activator: platform.ui.Activator
+Bundle-Name: Platform UI
+Require-Bundle: platform.model.commons;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.jface;bundle-version="0.0.0";visibility:=reexport
+Export-Package: platform.ui,
+ platform.ui.actions,
+ platform.ui.actions.edit,
+ platform.ui.actions.manager,
+ platform.ui.controls,
+ platform.ui.controls.filter,
+ platform.ui.controls.tree,
+ platform.ui.fields,
+ platform.ui.fields.validators,
+ platform.ui.messages,
+ platform.ui.swt

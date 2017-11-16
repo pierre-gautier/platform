@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="platform.hibernate" xmlns="http://www.w3.org/2001/XMLSchema">
+
+ <annotation>
+  <appinfo>
+   <meta.schema plugin="platform.hibernate" id="entity" name="entity"/>
+  </appinfo>
+ </annotation>
+
+  <element name="extension">
+    <complexType>
+      <attribute name="point" type="string" use="required" />
+      <sequence>
+        <element ref="entity" minOccurs="1" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+ <element name="entity">
+  <complexType>
+   <attribute name="class" type="string" use="required">
+    <annotation>
+     <appinfo>
+      <meta.attribute kind="java" basedOn=""/>
+     </appinfo>
+    </annotation>
+   </attribute>
+  </complexType>
+  </element>
+
+</schema>

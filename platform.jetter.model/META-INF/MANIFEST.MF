@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.jetter.model;singleton:=true
+Bundle-Activator: platform.jetter.model.Activator
+Bundle-Name: Platform Jetter
+Export-Package: io.swagger.jaxrs,
+ io.swagger.jaxrs.config,
+ io.swagger.jaxrs.ext,
+ io.swagger.jaxrs.listing,
+ io.swagger.jaxrs.utils,
+ javax.ws.rs,
+ javax.ws.rs.client,
+ javax.ws.rs.container,
+ javax.ws.rs.core,
+ javax.ws.rs.ext,
+ platform.jetter.model;uses:="org.osgi.framework",
+ platform.jetter.model.mapper
+Require-Bundle: platform.model.commons;bundle-version="0.0.0";visibility:=reexport,
+ platform.jetter;bundle-version="0.0.1"
+Bundle-ClassPath: .,
+ lib/javax.ws.rs-api-2.0.jar,
+ lib/swagger-jaxrs-1.5.10.jar

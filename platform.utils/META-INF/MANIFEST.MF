@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-Version: 0.0.1.qualifier
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.utils;singleton:=true
+Bundle-Activator: platform.utils.Activator
+Bundle-Name: Platform Utils
+Export-Package: platform.utils;uses:="org.osgi.framework",
+ platform.utils.collections,
+ platform.utils.interfaces
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.12.0";visibility:=reexport

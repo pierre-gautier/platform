@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_u4a_cNjWEeaEK6nhz276Lg">
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_t9OOcDlUEeajPv2MSmUa-Q" featurename="addons" parentElementId="application">
+  <elements xsi:type="application:Addon" xmi:id="_t9OOcTlUEeajPv2MSmUa-Q" elementId="platform.ui.workbench.WorkbenchAddon" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.WorkbenchAddon" />
+ </fragments>
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_jAPpYDStEeOImeSIZPVSZw" featurename="handlers" parentElementId="application">
+  <elements xsi:type="commands:Handler" xmi:id="_a5L7UDSwEeOT3rtDqnFW9w" elementId="handler.quit" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.QuitHandler" command="_GE6tEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:Handler" xmi:id="_a5L7VDSwEeOT3rtDqnFW9w" elementId="handler.about" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.AboutHandler" command="_HL8mkDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:Handler" xmi:id="_pz9EMHHsEeWkhPmq_OQ3Cg" elementId="handler.restart" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.RestartHandler" command="_r4V90HHsEeWkhPmq_OQ3Cg" />
+  <elements xsi:type="commands:Handler" xmi:id="_m71VoGGJEeeZt4iDcL_IGQ" elementId="handler.fullscreen" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.FullScreenHandler" command="_GcuJEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:Handler" xmi:id="_nDAUoGGJEeeZt4iDcL_IGQ" elementId="handler.parts" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.PartsHandler" command="_GxoCEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:Handler" xmi:id="_nIfRkGGJEeeZt4iDcL_IGQ" elementId="handler.closeActivePart" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.CloseActiveEditorHandler" command="_HftQEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:Handler" xmi:id="_nmy-MGGJEeeZt4iDcL_IGQ" elementId="handler.closeAllEditors" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.CloseAllEditorsHandler" command="_eriKwIXKEeSZ-eCCoa8HOw" />
+  <elements xsi:type="commands:Handler" xmi:id="_rnidYGMWEee4OuQhGPLWbA" elementId="handler.undo" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.UndoHandler" command="_n3sukGMWEee4OuQhGPLWbA" />
+  <elements xsi:type="commands:Handler" xmi:id="_tt1bgGMWEee4OuQhGPLWbA" elementId="handler.redo" contributionURI="bundleclass://platform.ui.workbench/platform.ui.workbench.handlers.RedoHandler" command="_pjwnwGMWEee4OuQhGPLWbA" />
+ </fragments>
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_617sIDStEeOImeSIZPVSZw" featurename="commands" parentElementId="application">
+  <elements xsi:type="commands:Command" xmi:id="_GE6tEDSuEeOImeSIZPVSZw" elementId="command.quit" commandName="Quit" />
+  <elements xsi:type="commands:Command" xmi:id="_HL8mkDSuEeOImeSIZPVSZw" elementId="command.about" commandName="About" />
+  <elements xsi:type="commands:Command" xmi:id="_r4V90HHsEeWkhPmq_OQ3Cg" elementId="command.restart" commandName="Restart" />
+  <elements xsi:type="commands:Command" xmi:id="_GcuJEDSuEeOImeSIZPVSZw" elementId="command.fullScreen" commandName="Fullscreen" />
+  <elements xsi:type="commands:Command" xmi:id="_GxoCEDSuEeOImeSIZPVSZw" elementId="command.parts" commandName="Open part" />
+  <elements xsi:type="commands:Command" xmi:id="_HftQEDSuEeOImeSIZPVSZw" elementId="command.closeActiveEditor" commandName="Close active editor" />
+  <elements xsi:type="commands:Command" xmi:id="_eriKwIXKEeSZ-eCCoa8HOw" elementId="command.closeAllEditors" commandName="Close all editors" />
+  <elements xsi:type="commands:Command" xmi:id="_n3sukGMWEee4OuQhGPLWbA" elementId="command.undo" commandName="Undo" />
+  <elements xsi:type="commands:Command" xmi:id="_pjwnwGMWEee4OuQhGPLWbA" elementId="command.redo" commandName="Redo" />
+ </fragments>
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_ugKh8DSwEeOT3rtDqnFW9w" featurename="bindings" parentElementId="bindingtable">
+  <elements xsi:type="commands:KeyBinding" xmi:id="_ypYaETSwEeOT3rtDqnFW9w" elementId="keyBinding.quit" keySequence="M1+Q" command="_GE6tEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:KeyBinding" xmi:id="_2GzS8HicEeW5JMTDC0ipIQ" elementId="keyBinding.restart" keySequence="M1+R" command="_r4V90HHsEeWkhPmq_OQ3Cg" />
+  <elements xsi:type="commands:KeyBinding" xmi:id="_ypYaEjSwEeOT3rtDqnFW9w" elementId="keyBinding.fullScreen" keySequence="F11" command="_GcuJEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:KeyBinding" xmi:id="_ypYaEzSwEeOT3rtDqnFW9w" elementId="keyBinding.closeActivePart" keySequence="M1+W" command="_HftQEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:KeyBinding" xmi:id="_ivxcQIXKEeSZ-eCCoa8HOw" elementId="keyBinding.closeEditorParts" keySequence="M1+M2+W" command="_eriKwIXKEeSZ-eCCoa8HOw" />
+  <elements xsi:type="commands:KeyBinding" xmi:id="_liTHAMihEeSbWvWjoEFi2A" elementId="keyBinding.parts" keySequence="M1+M2+P" command="_GxoCEDSuEeOImeSIZPVSZw" />
+  <elements xsi:type="commands:KeyBinding" xmi:id="_vyDWAGMWEee4OuQhGPLWbA" elementId="keyBinding.undo" keySequence="M1+Z" command="_n3sukGMWEee4OuQhGPLWbA" />
+  <elements xsi:type="commands:KeyBinding" xmi:id="_v4mp8GMWEee4OuQhGPLWbA" elementId="keyBinding.redo" keySequence="M1+Y" command="_pjwnwGMWEee4OuQhGPLWbA" />
+ </fragments>
+ <fragments xsi:type="fragment:StringModelFragment" xmi:id="_xWdgkGAMEeeDmZ0NesuDhA" featurename="children" parentElementId="org.eclipse.ui.main.menu">
+  <elements xsi:type="menu:Menu" xmi:id="_3G-GoGAMEeeDmZ0NesuDhA" elementId="menu.file" label="File">
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_01YtAGMWEee4OuQhGPLWbA" elementId="handledmenuitem.undo" label="Undo" iconURI="" tooltip="" mnemonics="" command="_n3sukGMWEee4OuQhGPLWbA" />
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_08LRgGMWEee4OuQhGPLWbA" elementId="handledmenuitem.redo" label="Redo" iconURI="" tooltip="" mnemonics="" command="_pjwnwGMWEee4OuQhGPLWbA" />
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_wo90MHHsEeWkhPmq_OQ3Cg" elementId="handledmenuitem.restart" label="Restart" iconURI="" tooltip="" mnemonics="" command="_r4V90HHsEeWkhPmq_OQ3Cg" />
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_pnAvwTSyEeOf7ayegWU5_Q" elementId="handledmenuitem.quit" label="Quit" iconURI="" tooltip="" mnemonics="" command="_GE6tEDSuEeOImeSIZPVSZw" />
+  </elements>
+  <elements xsi:type="menu:Menu" xmi:id="_XpvroGGJEeeZt4iDcL_IGQ" elementId="menu.window" label="Window">
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_XA_1xDZFEeOJvYwAtNBLYw" elementId="handledmenuitem.fullscreen" label="Fullscreen" iconURI="" tooltip="" command="_GcuJEDSuEeOImeSIZPVSZw" />
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_XA_1xjZFEeOJvYwAtNBLYw" elementId="handledmenuitem.parts" label="Open part" iconURI="" tooltip="" command="_GxoCEDSuEeOImeSIZPVSZw" />
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_Z-UNsIXKEeSZ-eCCoa8HOw" elementId="handledmenuitem.closeActivePart" label="Close active part" iconURI="" tooltip="" command="_HftQEDSuEeOImeSIZPVSZw" />
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_mi69wIXKEeSZ-eCCoa8HOw" elementId="handledmenuitem.closeEditorParts" label="Close editor parts" iconURI="" tooltip="" command="_eriKwIXKEeSZ-eCCoa8HOw" />
+  </elements>
+  <elements xsi:type="menu:Menu" xmi:id="_4yX4gGAMEeeDmZ0NesuDhA" elementId="menu.help" label="Help">
+   <children xsi:type="menu:HandledMenuItem" xmi:id="_UkwnhDS-EeOf7ayegWU5_Q" elementId="handledmenuitem.about" label="About" iconURI="" tooltip="" mnemonics="" command="_HL8mkDSuEeOImeSIZPVSZw" />
+  </elements>
+ </fragments>
+</fragment:ModelFragments>

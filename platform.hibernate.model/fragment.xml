@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+ <extension point="platform.hibernate.entity">
+  <entity class="platform.hibernate.model.NodeEntity" />
+  <entity class="platform.hibernate.model.NodeAttributeEntity" />
+  <entity class="platform.hibernate.model.NodeAttributeIdEntity" />
+  <entity class="platform.hibernate.model.RelationEntity" />
+  <entity class="platform.hibernate.model.RelationAttributeEntity" />
+  <entity class="platform.hibernate.model.RelationAttributeIdEntity" />
+ </extension>
+</fragment>

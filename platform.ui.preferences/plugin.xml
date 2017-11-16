@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension-point id="platform.ui.preferences.preferencePage" name="scopedPage" schema="schema/preferencePage.exsd"/>
+ <extension id="modelContribution" point="org.eclipse.e4.workbench.model">
+  <fragment uri="preference.ui.e4xmi" />
+ </extension>
+ <extension point="platform.ui.preferences.preferencePage">
+  <page class="platform.ui.preferences.PreferencePreferencePage" />
+ </extension>
+</plugin>

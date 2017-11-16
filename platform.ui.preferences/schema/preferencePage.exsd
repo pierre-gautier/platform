@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="platforms.ui.preference" xmlns="http://www.w3.org/2001/XMLSchema">
+
+<annotation>
+ <appinfo>
+  <meta.schema plugin="platforms.ui.preference" id="preferencePage" name="preferencePage"/>
+ </appinfo>
+</annotation>
+
+ <element name="extension">
+  <complexType>
+   <sequence>
+    <element ref="page" minOccurs="1" maxOccurs="unbounded"/>
+   </sequence>
+   <attribute name="id" type="string" />
+   <attribute name="name" type="string" />
+   <attribute name="point" type="string" use="required" />
+  </complexType>
+ </element>
+
+ <element name="page">
+  <complexType>
+   <attribute name="class" type="string" use="required">
+    <annotation>
+     <appinfo>
+      <meta.attribute kind="java" basedOn=":org.eclipse.jface.preference.IPreferencePage"/>
+     </appinfo>
+    </annotation>
+   </attribute>
+   <attribute name="category" type="string" />
+   <attribute name="action" type="string" />
+   <attribute name="type" type="int" />
+  </complexType>
+ </element>
+ 
+</schema>

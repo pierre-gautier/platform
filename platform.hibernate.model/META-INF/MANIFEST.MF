@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-Version: 0.0.1.qualifier
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Name: Platform Hibernate Model
+Bundle-SymbolicName: platform.hibernate.model;singleton:=true
+Fragment-Host: platform.hibernate
+Require-Bundle: platform.model;bundle-version="0.0.0";visibility:=reexport
+Export-Package: platform.hibernate.model;uses:="org.osgi.framework,platform.hibernate",
+ platform.hibernate.model.mapper;uses:="platform.model,platform.hibernate.model,platform.hibernate"

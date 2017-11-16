@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="platform.model" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+  <appinfo>
+   <meta.schema plugin="platform.model" id="factories" name="factories"/>
+  </appinfo>
+ </annotation>
+
+ <element name="extension">
+  <complexType>
+   <sequence>
+    <element ref="nodeFactory"/>
+   </sequence>
+   <attribute name="point" type="string" use="required" />
+  </complexType>
+ </element>
+
+ <element name="nodeFactory">
+  <complexType>
+   <attribute name="class" type="string" use="required">
+    <annotation>
+     <appinfo>
+      <meta.attribute kind="java" basedOn=":platform.model.factory.IFactory"/>
+     </appinfo>
+    </annotation>
+   </attribute>
+  </complexType>
+ </element>
+
+</schema>

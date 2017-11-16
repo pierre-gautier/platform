@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.tests;singleton:=true
+Bundle-Activator: platform.tests.Activator
+Bundle-Name: Platform Tests
+Require-Bundle: org.junit;bundle-version="0.0.0",
+ platform.acl;bundle-version="0.0.0",
+ platform.dao;bundle-version="0.0.0",
+ platform.jetter;bundle-version="0.0.0",
+ platform.jetter.model;bundle-version="0.0.0",
+ platform.liquibase;bundle-version="0.0.0",
+ platform.liquibase.model;bundle-version="0.0.0",
+ platform.hibernate;bundle-version="0.0.0",
+ platform.preferences;bundle-version="0.0.0",
+ platform.jersey;bundle-version="0.0.0"
+Export-Package: platform.tests;uses:="org.osgi.framework,platform.liquibase"
