@@ -26,6 +26,7 @@ public class LicenseActionSet
     public Collection<IAction> getActions() {
         return CollectionsUtils.asList(
                 new CreateRelationAction(this.root, LicenseDescriptors.LICENSE, null),
+                new CreateMultiRelationAction(this.root, LicenseDescriptors.LICENSE, null),
                 new CopyRelationAction(this.root, LicenseDescriptors.LICENSE.getId()),
                 new PasteRelationAction(this.root, LicenseDescriptors.LICENSE.getId()),
                 new RemoveRelationAction(this.root));

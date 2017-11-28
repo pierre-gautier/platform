@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import platform.model.IRelation;
+import platform.utils.collections.CollectionsUtils;
 
 public class Clipboard {
     
@@ -29,7 +30,7 @@ public class Clipboard {
     }
     
     public void copy(final Collection<IRelation> relations) {
-        if (relations == null || relations.isEmpty()) {
+        if (CollectionsUtils.isNullOrEmpty(relations)) {
             this.copied = null;
             return;
         }

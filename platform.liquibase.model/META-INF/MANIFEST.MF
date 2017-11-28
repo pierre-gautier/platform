@@ -7,5 +7,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.liquibase.model;singleton:=true
 Bundle-Activator: platform.liquibase.model.Activator
 Bundle-Name: Platform Liquibase Model
-Require-Bundle: platform.liquibase;bundle-version="0.0.0"
+Require-Bundle: org.eclipse.osgi;bundle-version="3.12.0"
 Export-Package: platform.liquibase.model;uses:="org.osgi.framework"

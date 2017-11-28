@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.ws;singleton:=true
+Bundle-Activator: platform.ws.Activator
+Bundle-Name: Platform WS
+Require-Bundle: platform.model;bundle-version="0.0.0"
+Export-Package: platform.ws;
+  uses:="org.osgi.framework,
+   platform.model,
+   platform.jersey,
+   platform.jetter.model.mapper"

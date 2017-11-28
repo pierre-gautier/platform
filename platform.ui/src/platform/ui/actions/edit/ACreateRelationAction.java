@@ -24,7 +24,7 @@ public abstract class ACreateRelationAction
     @SuppressWarnings("unchecked")
     protected final IUndoHandler internalRun() {
         final Collection<IRelation> relations = this.getRelations();
-        if (relations == null || relations.isEmpty()) {
+        if (CollectionsUtils.isNullOrEmpty(relations)) {
             return null;
         }
         final Map<INode, Collection<IRelation>> nodeToRelations = CollectionsUtils.createMultiMap(1, LinkedList.class);

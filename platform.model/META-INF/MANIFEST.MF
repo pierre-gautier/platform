@@ -8,7 +8,7 @@ Bundle-SymbolicName: platform.model;singleton:=true
 Bundle-Activator: platform.model.Activator
 Bundle-Name: Platform Model
 Export-Package: platform.model;uses:="org.osgi.framework",
- platform.model.factory,
- platform.model.io,
- platform.model.utils
+ platform.model.factory;uses:="platform.model",
+ platform.model.io;uses:="platform.model",
+ platform.model.utils;uses:="platform.model"
 Require-Bundle: platform.utils;bundle-version="0.0.0";visibility:=reexport

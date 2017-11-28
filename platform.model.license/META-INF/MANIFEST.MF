@@ -7,6 +7,12 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.model.license;singleton:=true
 Bundle-Activator: platform.model.license.Activator
 Bundle-Name: Platform License Model
-Require-Bundle: platform.model.commons;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.e4.core.di.annotations;bundle-version="0.0.0";visibility:=reexport
-Export-Package: platform.model.license;uses:="org.osgi.framework,platform.model"
+Require-Bundle: platform.model;bundle-version="0.0.0",
+ platform.model.commons;bundle-version="0.0.0",
+ org.eclipse.e4.core.di.annotations;bundle-version="1.6.0"
+Export-Package: platform.model.license;
+  uses:="org.osgi.framework,
+   platform.model,
+   platform.model.commons,
+   platform.model.factory"
+Import-Package: javax.inject;version="0.0.0"

@@ -12,6 +12,7 @@ import platform.model.Descriptor;
 import platform.model.INode;
 import platform.model.IRelation;
 import platform.model.io.Formatter;
+import platform.utils.collections.CollectionsUtils;
 
 public final class FilterData {
     
@@ -32,7 +33,7 @@ public final class FilterData {
     public FilterData(final String value, final boolean caseSensitive, final boolean useRegex, final Collection<Descriptor<?>> descriptors,
             final Collection<Descriptor<?>> exclude, final Set<Descriptor<IRelation>> relationTypes) {
         Assert.isNotNull(value);
-        Assert.isTrue(descriptors != null && !descriptors.isEmpty());
+        Assert.isTrue(!CollectionsUtils.isNullOrEmpty(descriptors));
         this.caseSensitive = caseSensitive;
         this.value = value;
         this.actualValue = caseSensitive ? value : value.toLowerCase();
@@ -40,7 +41,7 @@ public final class FilterData {
         this.pattern = useRegex ? Pattern.compile(value, caseSensitive ? 0 : Pattern.CASE_INSENSITIVE) : null;
         this.descriptors = new ArrayList<>(descriptors);
         this.relationTypes = relationTypes;
-        this.exclude = exclude == null || exclude.isEmpty() ? Collections.<Descriptor<?>>emptyList() : exclude;
+        this.exclude = CollectionsUtils.isNullOrEmpty(descriptors) ? Collections.<Descriptor<?>>emptyList() : exclude;
     }
     
     public FilterData(final String value, final FilterData parameters) {

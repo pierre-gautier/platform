@@ -6,20 +6,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.jetter.model;singleton:=true
 Bundle-Activator: platform.jetter.model.Activator
 Bundle-Name: Platform Jetter
-Export-Package: io.swagger.jaxrs,
- io.swagger.jaxrs.config,
- io.swagger.jaxrs.ext,
- io.swagger.jaxrs.listing,
- io.swagger.jaxrs.utils,
- javax.ws.rs,
- javax.ws.rs.client,
- javax.ws.rs.container,
- javax.ws.rs.core,
- javax.ws.rs.ext,
- platform.jetter.model;uses:="org.osgi.framework",
- platform.jetter.model.mapper
-Require-Bundle: platform.model.commons;bundle-version="0.0.0";visibility:=reexport,
- platform.jetter;bundle-version="0.0.1"
-Bundle-ClassPath: .,
- lib/javax.ws.rs-api-2.0.jar,
- lib/swagger-jaxrs-1.5.10.jar
+Require-Bundle: platform.model;bundle-version="0.0.0",
+ platform.model.commons;bundle-version="0.0.0",
+ platform.jetter;bundle-version="0.0.0";visibility:=reexport
+Export-Package: platform.jetter.model;uses:="platform.model,org.osgi.framework,platform.utils.interfaces"

@@ -1,4 +1,4 @@
-package platform.jetter.model.mapper;
+package platform.jetter.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import platform.jetter.model.NodeDto;
-import platform.jetter.model.RelationDto;
 import platform.model.Attribute;
 import platform.model.Descriptor;
 import platform.model.INode;
@@ -49,29 +47,29 @@ public class NodeDtoMapper
         return attributes;
     }
     
-    private final IRoot       root;
-    private RelationDtoMapper mapper;
+    private final IRoot             root;
+    private final RelationDtoMapper relationMapper;
     
     public NodeDtoMapper(final IRoot root) {
         this.root = root;
+        this.relationMapper = new RelationDtoMapper(this);
     }
     
     public IRoot getRoot() {
         return this.root;
     }
     
-    public void setMapper(final RelationDtoMapper mapper) {
-        this.mapper = mapper;
-    }
-    
     @Override
     public NodeDto toEntity(final INode node) {
         final NodeDto entity = new NodeDto(node.getId(), node.getType().getId(), NodeDtoMapper.toEntities(node.getAttributes()));
-        if (this.mapper != null) {
+        if (this.relationMapper != null) {
             final Collection<IRelation> relations = node.getRelations();
             final Set<RelationDto> relationships = new HashSet<>(relations.size());
             for (final IRelation relation : relations) {
-                relationships.add(this.mapper.toEntity(relation, entity));
+                final RelationDto relationDto = this.relationMapper.toEntity(relation, entity);
+                if (relationDto != null) {
+                    relationships.add(relationDto);
+                }
             }
             entity.setRelationships(relationships);
         }
@@ -82,14 +80,16 @@ public class NodeDtoMapper
     public INode toModel(final NodeDto entity) {
         final Descriptor<INode> type = Descriptor.getDescriptor(entity.getType());
         final INode node = NodeFactories.INSTANCE.create(type, entity.getId(), NodeDtoMapper.toModels(entity.getAttributes()), this.root);
-        if (this.mapper != null) {
+        if (this.relationMapper != null) {
             final Collection<RelationDto> relationships = entity.getRelationships();
             if (relationships != null) {
                 final Collection<IRelation> relations = new ArrayList<>(relationships.size());
                 for (final RelationDto relationEntity : relationships) {
-                    final IRelation relation = this.mapper.toModel(relationEntity, node);
-                    if (relation != null) {
-                        relations.add(relation);
+                    if (relationEntity != null) {
+                        final IRelation relation = this.relationMapper.toModel(relationEntity, node);
+                        if (relation != null) {
+                            relations.add(relation);
+                        }
                     }
                 }
                 node.addRelations(relations);

@@ -7,5 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.jersey;singleton:=true
 Bundle-Activator: platform.jersey.Activator
 Bundle-Name: Platform Jersey
-Require-Bundle: platform.jetter.model;bundle-version="0.0.0"
-Export-Package: platform.jersey
+Require-Bundle: platform.model;bundle-version="0.0.0",
+ platform.jetter.model;bundle-version="0.0.0"
+Export-Package: platform.jersey;uses:="org.osgi.framework,platform.model,platform.jetter.model"

@@ -58,8 +58,12 @@ public class CollectionsUtils {
         return new MultiMap<>(initialCapacity, defaultValue);
     }
     
+    public static boolean isNullOrEmpty(final Collection<?> collection) {
+        return collection == null || collection.isEmpty();
+    }
+    
     public static <T> List<List<T>> sub(final List<T> list, final int size) {
-        if (list == null || list.isEmpty()) {
+        if (CollectionsUtils.isNullOrEmpty(list)) {
             return Collections.emptyList();
         }
         if (size < 1) {

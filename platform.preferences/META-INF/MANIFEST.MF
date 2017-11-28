@@ -7,6 +7,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.preferences;singleton:=true
 Bundle-Activator: platform.preferences.Activator
 Bundle-Name: Platform Preferenceses
-Require-Bundle: platform.model.commons;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.e4.core.di.annotations;bundle-version="1.5.0"
+Require-Bundle: org.eclipse.e4.core.di.annotations;bundle-version="1.5.0",
+ platform.model.commons;bundle-version="0.0.0",
+ platform.model;bundle-version="0.0.0"
 Export-Package: platform.preferences;uses:="org.osgi.framework,platform.model,platform.model.commons"
+Import-Package: javax.inject;version="0.0.0"

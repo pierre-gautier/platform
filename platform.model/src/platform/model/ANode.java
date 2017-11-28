@@ -12,6 +12,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.runtime.Assert;
 
+import platform.utils.collections.CollectionsUtils;
+
 @SuppressWarnings("nls")
 public abstract class ANode
         extends AObject
@@ -26,7 +28,7 @@ public abstract class ANode
     
     @Override
     public final void addRelations(final Collection<IRelation> add) {
-        if (add == null || add.isEmpty()) {
+        if (CollectionsUtils.isNullOrEmpty(add)) {
             return;
         }
         for (final IRelation relation : add) {

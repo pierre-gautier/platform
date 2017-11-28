@@ -13,6 +13,7 @@ import platform.model.IAttributeListener;
 import platform.model.IRelation;
 import platform.ui.controls.filter.FilterData;
 import platform.ui.controls.filter.IFilter;
+import platform.utils.collections.CollectionsUtils;
 
 public class ModelTreeViewerFilter
         extends ViewerFilter
@@ -24,7 +25,7 @@ public class ModelTreeViewerFilter
     
     public ModelTreeViewerFilter(final Collection<Descriptor<?>> candidateProperties, final Collection<Descriptor<?>> exclude, final Set<Descriptor<IRelation>> relationTypes) {
         super();
-        Assert.isTrue(candidateProperties != null && !candidateProperties.isEmpty(), "candidate properties must not be null or empty"); //$NON-NLS-1$
+        Assert.isTrue(!CollectionsUtils.isNullOrEmpty(candidateProperties), "candidate properties must not be null or empty"); //$NON-NLS-1$
         this.candidateProperties = candidateProperties;
         this.filterData = new FilterData("", false, false, candidateProperties, exclude, relationTypes); //$NON-NLS-1$
     }

@@ -7,5 +7,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.provisionning;singleton:=true
 Bundle-Activator: platform.provisionning.Activator
 Bundle-Name: Platform Provisionning
-Require-Bundle: platform.utils;bundle-version="0.0.0";visibility:=reexport
+Require-Bundle: org.eclipse.osgi;bundle-version="3.12.0"
 Export-Package: platform.provisionning;uses:="org.osgi.framework"

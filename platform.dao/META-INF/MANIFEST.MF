@@ -7,5 +7,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.dao;singleton:=true
 Bundle-Activator: platform.dao.Activator
 Bundle-Name: Platform DAO
-Require-Bundle: platform.model;bundle-version="0.0.0";visibility:=reexport
-Export-Package: platform.dao;uses:="org.osgi.framework"
+Require-Bundle: platform.model;bundle-version="0.0.0"
+Export-Package: platform.dao;uses:="platform.model,org.osgi.framework,platform.utils.interfaces"

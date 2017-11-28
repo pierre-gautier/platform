@@ -10,8 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import platform.jetter.model.NodeDto;
-import platform.jetter.model.NodeServer;
-import platform.jetter.model.NodeService;
+import platform.jetter.model.NodeDtoServer;
 import platform.jetter.model.RelationDto;
 import platform.model.INode;
 import platform.model.IRoot;
@@ -20,6 +19,7 @@ import platform.model.commons.Root;
 import platform.model.utils.NodeUtils;
 import platform.model.utils.TraversalContext;
 import platform.utils.Strings;
+import platform.utils.interfaces.IService;
 
 @SuppressWarnings("nls")
 public class TestService {
@@ -31,8 +31,8 @@ public class TestService {
         
     }
     
-    private final IRoot       root    = new Root("test-all-root");
-    private final NodeService service = new NodeServer(this.root, true);
+    private final IRoot             root    = new Root("test-all-root");
+    private final IService<NodeDto> service = new NodeDtoServer(this.root, true);
     
     @Test
     public void test() {

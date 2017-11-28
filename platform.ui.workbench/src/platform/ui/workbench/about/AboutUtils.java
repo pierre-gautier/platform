@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Shell;
 
 public class AboutUtils {
     
-    // TODO
     private static final String LOG_FILE = "";         //$NON-NLS-1$
     
     private static final String FILE     = "file:///"; //$NON-NLS-1$

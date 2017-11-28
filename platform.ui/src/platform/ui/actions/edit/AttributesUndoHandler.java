@@ -12,6 +12,7 @@ import platform.model.Descriptor;
 import platform.model.IObject;
 import platform.model.utils.NodeUtils;
 import platform.ui.actions.IUndoHandler;
+import platform.utils.collections.CollectionsUtils;
 
 public class AttributesUndoHandler
         implements IUndoHandler {
@@ -23,16 +24,16 @@ public class AttributesUndoHandler
     public AttributesUndoHandler(final Collection<? extends IObject> objects, final Collection<Descriptor<?>> descriptors) {
         this.references = new WeakHashMap<>(objects.size());
         this.descriptors = descriptors;
-        this.removeNotFound = descriptors == null || descriptors.isEmpty();
+        this.removeNotFound = CollectionsUtils.isNullOrEmpty(descriptors);
         for (final IObject object : objects) {
             final Collection<Attribute> values;
-            if (descriptors != null && !descriptors.isEmpty()) {
+            if (CollectionsUtils.isNullOrEmpty(descriptors)) {
+                values = object.getAttributes();
+            } else {
                 values = new ArrayList<>(descriptors.size());
                 for (final Descriptor<?> descriptor : descriptors) {
                     values.add(Attribute.unchecked(descriptor, object.getAttribute(descriptor)));
                 }
-            } else {
-                values = object.getAttributes();
             }
             this.references.put(object, values);
         }

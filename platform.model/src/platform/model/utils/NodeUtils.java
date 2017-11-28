@@ -82,18 +82,18 @@ public class NodeUtils {
         return null;
     }
     
-    public static void merge(final INode node, final TraversalContext context, final INode toMerge) {
-        Assert.isTrue(node != toMerge && node.equals(toMerge), "in and toMerge must not be the same and must be equals"); //$NON-NLS-1$
-        if (NodeUtils.checkContext(context, node)) {
-            NodeUtils.updateAttributes(node, toMerge.getAttributes(), true);
-            final Collection<IRelation> relations = node.getRelations();
+    public static void merge(final INode in, final TraversalContext context, final INode toMerge) {
+        Assert.isTrue(in != toMerge && in.equals(toMerge), "in and toMerge must not be the same and must be equals"); //$NON-NLS-1$
+        if (NodeUtils.checkContext(context, in)) {
+            NodeUtils.updateAttributes(in, toMerge.getAttributes(), true);
+            final Collection<IRelation> relations = in.getRelations();
             final Collection<IRelation> toMergeRelations = toMerge.getRelations();
             final Collection<IRelation> relationsToMerge = new ArrayList<>(toMergeRelations.size());
             for (final Iterator<IRelation> it = toMergeRelations.iterator(); it.hasNext();) {
                 final IRelation relationToMerge = it.next();
                 for (final IRelation relation : relations) {
                     if (relation.getId().equals(relationToMerge.getId())) {
-                        NodeUtils.merge(relation, context, relationToMerge);
+                        NodeUtils.mergeRelation(relation, context, relationToMerge);
                         it.remove();
                         break;
                     }
@@ -102,14 +102,14 @@ public class NodeUtils {
                         relationToMerge.getType(),
                         relationToMerge.getId(),
                         relationToMerge.getAttributes(),
-                        node,
+                        in,
                         relationToMerge.getTarget()));
             }
-            node.addRelations(relationsToMerge);
+            in.addRelations(relationsToMerge);
         }
     }
     
-    public static void merge(final IRelation relation, final TraversalContext context, final IRelation toMerge) {
+    public static void mergeRelation(final IRelation relation, final TraversalContext context, final IRelation toMerge) {
         Assert.isTrue(relation != toMerge && relation.equals(toMerge), "in and toMerge must not be the same and must be equals"); //$NON-NLS-1$
         if (!relation.getSource().getId().equals(toMerge.getSource().getId())
                 || !relation.getTarget().getId().equals(toMerge.getTarget().getId())) {

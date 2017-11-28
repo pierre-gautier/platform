@@ -26,8 +26,7 @@ public enum RelationFactory
             return null;
         }
         try {
-            return clazz.getConstructor(Descriptor.class, String.class, Collection.class, INode.class, INode.class)
-                    .newInstance(type, id, attributes, source, target);
+            return clazz.getConstructor(Descriptor.class, String.class, Collection.class, INode.class, INode.class).newInstance(type, id, attributes, source, target);
         } catch (final Exception e) {
             e.printStackTrace();
             return null;

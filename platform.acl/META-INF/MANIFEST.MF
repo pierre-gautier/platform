@@ -7,6 +7,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: platform.acl;singleton:=true
 Bundle-Activator: platform.acl.Activator
 Bundle-Name: Platform ACL
-Require-Bundle: platform.model.commons;bundle-version="0.0.0";visibility:=reexport,
+Require-Bundle: platform.model;bundle-version="0.0.0",
+ platform.model.commons;bundle-version="0.0.0",
  org.eclipse.e4.core.di.annotations;bundle-version="1.5.0"
 Export-Package: platform.acl;uses:="platform.model,org.osgi.framework,platform.model.commons"
+Import-Package: javax.inject;version="0.0.0"

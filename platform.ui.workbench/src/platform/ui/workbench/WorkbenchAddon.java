@@ -2,6 +2,7 @@ package platform.ui.workbench;
 
 import javax.inject.Inject;
 
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.e4.ui.workbench.modeling.IWindowCloseHandler;
@@ -14,7 +15,8 @@ public class WorkbenchAddon {
     @Inject
     @Optional
     public void register(final IWorkbench workbench, final Shell shell) {
-        workbench.getApplication().getContext().set(IWindowCloseHandler.class, windowClosed -> {
+        final IEclipseContext context = workbench.getApplication().getContext();
+        context.set(IWindowCloseHandler.class, windowClosed -> {
             QuitHandler.execute(workbench, shell);
             return true;
         });

@@ -1,7 +1,5 @@
-package platform.jetter.model.mapper;
+package platform.jetter.model;
 
-import platform.jetter.model.NodeDto;
-import platform.jetter.model.RelationDto;
 import platform.model.Descriptor;
 import platform.model.INode;
 import platform.model.IRelation;
@@ -13,33 +11,33 @@ import platform.utils.interfaces.IMapper;
 public class RelationDtoMapper
         implements IMapper<RelationDto, IRelation> {
     
-    private final NodeDtoMapper mapper;
+    private final NodeDtoMapper nodeMapper;
     
-    public RelationDtoMapper(final NodeDtoMapper mapper) {
-        this.mapper = mapper;
+    public RelationDtoMapper(final NodeDtoMapper nodeMapper) {
+        this.nodeMapper = nodeMapper;
     }
     
     @Override
     public RelationDto toEntity(final IRelation model) {
-        return this.toEntity(model, this.mapper.toEntity(model.getSource()));
+        return this.toEntity(model, this.nodeMapper.toEntity(model.getSource()));
     }
     
     public RelationDto toEntity(final IRelation model, final NodeDto source) {
         return new RelationDto(model.getId(), model.getType().getId(), source.getId(),
-                this.mapper.toEntity(model.getTarget()),
+                this.nodeMapper.toEntity(model.getTarget()),
                 NodeDtoMapper.toEntities(model.getAttributes()));
     }
     
     @Override
     public IRelation toModel(final RelationDto entity) {
-        return this.toModel(entity, NodeUtils.find(this.mapper.getRoot(), new TraversalContext(), entity.getSourceId()));
+        return this.toModel(entity, NodeUtils.find(this.nodeMapper.getRoot(), new TraversalContext(), entity.getSourceId()));
     }
     
     public IRelation toModel(final RelationDto entity, final INode source) {
         return RelationFactories.INSTANCE.create(
                 Descriptor.getDescriptor(entity.getType()), entity.getId(),
                 NodeDtoMapper.toModels(entity.getAttributes()), source,
-                this.mapper.toModel(entity.getTarget()));
+                this.nodeMapper.toModel(entity.getTarget()));
     }
     
 }

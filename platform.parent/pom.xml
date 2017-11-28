@@ -86,5 +86,6 @@
   <module>../platform.ui.workbench</module>
   <module>../platform.ui.preferences</module>
   <module>../platform.jersey</module>
+  <module>../platform.ws</module>
  </modules>
 </project>

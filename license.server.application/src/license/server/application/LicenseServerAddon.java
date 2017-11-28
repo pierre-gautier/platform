@@ -21,8 +21,10 @@ import platform.hibernate.model.RelationEntity;
 import platform.hibernate.model.mapper.NodeEntityMapper;
 import platform.hibernate.model.mapper.RelationEntityMapper;
 import platform.jetter.JetterService;
-import platform.jetter.model.NodeServer;
-import platform.jetter.model.NodeService;
+import platform.jetter.model.NodeDto;
+import platform.jetter.model.NodeDtoServer;
+import platform.jetter.model.RelationDto;
+import platform.jetter.model.RelationDtoServer;
 import platform.liquibase.LiquibaseService;
 import platform.model.INode;
 import platform.model.IRelation;
@@ -33,10 +35,11 @@ import platform.sql.DatabaseDescriptorFactories;
 import platform.sql.DatabaseDescriptorParser;
 import platform.sql.DatabaseService;
 import platform.utils.Configuration;
+import platform.utils.interfaces.IService;
 
 public class LicenseServerAddon {
     
-    private static DatabaseDescriptor MYSQL = DatabaseDescriptorFactories.INSTANCE.create("jdbc:mysql://localhost", "licenses", "root", "root"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    private static DatabaseDescriptor MYSQL = DatabaseDescriptorFactories.INSTANCE.create("jdbc:mysql://localhost", "licenses-server", "root", "root"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     
     private final LicenseRoot         root;
     
@@ -88,8 +91,9 @@ public class LicenseServerAddon {
         
         this.root.addStrategy(daoStrategy);
         
-        final NodeService service = new NodeServer(this.root, false);
-        final JetterService jetter = new JetterService(8080, "/api", service); //$NON-NLS-1$
+        final IService<NodeDto> nodeService = new NodeDtoServer(this.root, true);
+        final IService<RelationDto> relationService = new RelationDtoServer(this.root);
+        final JetterService jetter = new JetterService(8080, "/api", nodeService, relationService); //$NON-NLS-1$
         
         try {
             jetter.start();

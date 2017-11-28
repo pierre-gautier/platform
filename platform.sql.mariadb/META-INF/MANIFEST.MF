@@ -99,4 +99,5 @@ Export-Package: org.mariadb.jdbc;
    org.mariadb.jdbc.internal.com.read.dao,
    org.mariadb.jdbc",
  org.mariadb.jdbc.internal.util.exceptions;x-internal:=true;uses:="org.mariadb.jdbc.internal.logging,org.mariadb.jdbc",
- org.mariadb.jdbc.internal.util.scheduler;x-internal:=true
+ org.mariadb.jdbc.internal.util.scheduler;x-internal:=true,
+ platform.sql.mariadb;uses:="platform.sql"
