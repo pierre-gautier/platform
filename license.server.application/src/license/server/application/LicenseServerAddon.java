@@ -20,26 +20,29 @@ import platform.hibernate.model.NodeEntity;
 import platform.hibernate.model.RelationEntity;
 import platform.hibernate.model.mapper.NodeEntityMapper;
 import platform.hibernate.model.mapper.RelationEntityMapper;
-import platform.jetter.JetterService;
-import platform.jetter.model.NodeDto;
-import platform.jetter.model.NodeDtoServer;
-import platform.jetter.model.RelationDto;
-import platform.jetter.model.RelationDtoServer;
 import platform.liquibase.LiquibaseService;
 import platform.model.INode;
 import platform.model.IRelation;
 import platform.model.commons.AttributesStrategy;
 import platform.model.license.LicenseRoot;
+import platform.rest.model.NodeDto;
+import platform.rest.model.NodeDtoServer;
+import platform.rest.model.RelationDto;
+import platform.rest.model.RelationDtoServer;
+import platform.rest.server.RESTServer;
+import platform.rest.whatsup.WhatsupDtoServer;
 import platform.sql.DatabaseDescriptor;
 import platform.sql.DatabaseDescriptorFactories;
 import platform.sql.DatabaseDescriptorParser;
 import platform.sql.DatabaseService;
 import platform.utils.Configuration;
 import platform.utils.interfaces.IService;
+import platform.whatsup.WhatsupStrategy;
 
+@SuppressWarnings("nls")
 public class LicenseServerAddon {
     
-    private static DatabaseDescriptor MYSQL = DatabaseDescriptorFactories.INSTANCE.create("jdbc:mysql://localhost", "licenses-server", "root", "root"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    private static DatabaseDescriptor MYSQL = DatabaseDescriptorFactories.INSTANCE.create("jdbc:mysql://localhost", "licenses-server", "root", "root");
     
     private final LicenseRoot         root;
     
@@ -52,7 +55,7 @@ public class LicenseServerAddon {
     @PostConstruct
     public void postConstruct() {
         
-        final File databasePropertiesFile = Configuration.file("database.properties"); //$NON-NLS-1$
+        final File databasePropertiesFile = Configuration.file("database.properties");
         
         DatabaseDescriptor databaseDescriptor = null;
         
@@ -71,7 +74,7 @@ public class LicenseServerAddon {
         new DatabaseService().createDatabase(databaseDescriptor);
         
         try {
-            final URL url = platform.liquibase.model.Activator.getContext().getBundle().getResource("resources/model.mysql.sql"); //$NON-NLS-1$
+            final URL url = platform.liquibase.model.Activator.getContext().getBundle().getResource("resources/model.mysql.sql");
             final String resourcePath = new File(FileLocator.toFileURL(url).getPath()).toString();
             final LiquibaseService liquibase = new LiquibaseService();
             liquibase.apply(databaseDescriptor, resourcePath);
@@ -91,12 +94,15 @@ public class LicenseServerAddon {
         
         this.root.addStrategy(daoStrategy);
         
+        final WhatsupStrategy whatsupStrategy = new WhatsupStrategy(1000);
+        final WhatsupDtoServer whatsupService = new WhatsupDtoServer(whatsupStrategy);
+        
         final IService<NodeDto> nodeService = new NodeDtoServer(this.root, true);
         final IService<RelationDto> relationService = new RelationDtoServer(this.root);
-        final JetterService jetter = new JetterService(8080, "/api", nodeService, relationService); //$NON-NLS-1$
+        final RESTServer server = new RESTServer(8080, "/api", nodeService, relationService, whatsupService);
         
         try {
-            jetter.start();
+            server.start();
         } catch (final Exception e1) {
             e1.printStackTrace();
         }

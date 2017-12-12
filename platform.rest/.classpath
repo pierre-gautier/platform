@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-module-jaxb-annotations-2.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-client-2.25.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-annotations-2.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-databind-2.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-yaml-2.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-entity-filtering-2.25.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-core-2.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-jaxrs-base-2.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-jaxrs-json-provider-2.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-media-json-jackson-2.25.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hk2-api-2.5.0-b60.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hk2-locator-2.5.0-b60.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hk2-utils-2.5.0-b60.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-guava-2.25.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jersey-common-2.25.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/swagger-annotations-1.5.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javax.ws.rs-api-2.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src/"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

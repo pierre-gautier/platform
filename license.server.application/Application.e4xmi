@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="application">
  <addons xmi:id="_Lx8PdG3SEeG3-9GGe-ncwA" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon" />
- <addons xmi:id="_icIyQFwaEeeUD7BPlUDERg" elementId="license.create.application.addon" contributionURI="bundleclass://license.server.application/license.server.application.LicenseServerAddon" />
+ <addons xmi:id="_icIyQFwaEeeUD7BPlUDERg" elementId="license.server.application.addon" contributionURI="bundleclass://license.server.application/license.server.application.LicenseServerAddon" />
 </application:Application>

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.rest.client.model;singleton:=true
+Bundle-Activator: platform.rest.client.model.Activator
+Bundle-Name: Platform REST Client Model
+Require-Bundle: platform.model;bundle-version="0.0.0",
+ platform.rest;bundle-version="0.0.0",
+ platform.rest.model;bundle-version="0.0.1"
+Export-Package: platform.rest.client.model

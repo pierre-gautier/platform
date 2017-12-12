@@ -78,14 +78,17 @@
   <module>../platform.hibernate.model</module>
   <module>../platform.liquibase</module>
   <module>../platform.liquibase.model</module>
-  <module>../platform.jetter</module>
-  <module>../platform.jetter.model</module>
   <module>../platform.acl</module>
   <module>../platform.preferences</module>
   <module>../platform.ui</module>
   <module>../platform.ui.workbench</module>
   <module>../platform.ui.preferences</module>
-  <module>../platform.jersey</module>
   <module>../platform.ws</module>
+  <module>../platform.rest</module>
+  <module>../platform.rest.client.model</module>
+  <module>../platform.rest.model</module>
+  <module>../platform.rest.server</module>
+  <module>../platform.rest.whatsup</module>
+  <module>../platform.whatsup</module>
  </modules>
 </project>

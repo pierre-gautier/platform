@@ -29,7 +29,7 @@ public class CreateMultiRelationAction
     }
     
     public CreateMultiRelationAction(final IRoot root, final Descriptor<? extends INode> nodeType, final Descriptor<? extends IRelation> relationType) {
-        super("Create"); //$NON-NLS-1$
+        super("Create multiple"); //$NON-NLS-1$
         this.root = root;
         this.nodeType = nodeType == null ? Types.NODE : nodeType;
         this.relationType = relationType == null ? Types.RELATION : relationType;
@@ -37,7 +37,7 @@ public class CreateMultiRelationAction
     
     @Override
     public int getAccelerator() {
-        return SWT.MOD1 + 'N';
+        return SWT.MOD1 + 'M';
     }
     
     @Override
@@ -61,7 +61,6 @@ public class CreateMultiRelationAction
         if (h == 0 || w == 0) {
             return;
         }
-        System.out.println(h + " - CreateMultiRelationAction.createRelations() " + source); //$NON-NLS-1$
         final Collection<IRelation> relations = new ArrayList<>(w);
         for (int i = 0; i < w; i++) {
             final Collection<Attribute> attributes = Arrays.asList(new Attribute(Descriptors.LABEL, this.nodeType.getLabel()));
@@ -69,9 +68,8 @@ public class CreateMultiRelationAction
             relations.add(RelationFactories.INSTANCE.create(this.relationType, null, null, source, target));
         }
         source.addRelations(relations);
-        
         for (final IRelation relation : relations) {
-            this.createRelations(relation.getTarget(), w, h - 1);
+            this.createRelations(relation.getTarget(), w - 1, h - 1);
         }
     }
     

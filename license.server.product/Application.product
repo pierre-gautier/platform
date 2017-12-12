@@ -69,17 +69,21 @@
       <plugin id="platform.dao"/>
       <plugin id="platform.hibernate"/>
       <plugin id="platform.hibernate.model" fragment="true"/>
-      <plugin id="platform.jetter"/>
-      <plugin id="platform.jetter.model"/>
       <plugin id="platform.liquibase"/>
       <plugin id="platform.liquibase.model"/>
       <plugin id="platform.model"/>
       <plugin id="platform.model.commons"/>
       <plugin id="platform.model.license"/>
+      <plugin id="platform.rest"/>
+      <plugin id="platform.rest.client.model"/>
+      <plugin id="platform.rest.model"/>
+      <plugin id="platform.rest.server"/>
+      <plugin id="platform.rest.whatsup"/>
       <plugin id="platform.sql"/>
       <plugin id="platform.sql.h2" fragment="true"/>
       <plugin id="platform.sql.mariadb" fragment="true"/>
       <plugin id="platform.utils"/>
+      <plugin id="platform.whatsup"/>
    </plugins>
 
    <configurations>

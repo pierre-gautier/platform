@@ -32,7 +32,7 @@ public abstract class ANode
             return;
         }
         for (final IRelation relation : add) {
-            Assert.isTrue(relation.getSource() == this, "source must be this");
+            Assert.isTrue(relation != null && relation.getSource() == this, "relation must be not null and source must be this");
             final List<IRelation> typedRelations = this.relations == null ? null : this.relations.get(relation.getType());
             Assert.isTrue(typedRelations == null || !typedRelations.contains(relation), "already contains relation");
         }
@@ -52,7 +52,17 @@ public abstract class ANode
             typedRelations.add(relation);
             addedRelations.add(relation);
         }
-        this.sendAddedEvent(addedRelations);
+        if (addedRelations.isEmpty()) {
+            return;
+        }
+        for (final IStrategy strategy : this.getRoot().getStrategies()) {
+            strategy.relationsAdded(this, addedRelations);
+        }
+        if (this.listeners != null) {
+            for (final IRelationListener listener : this.listeners) {
+                listener.relationsAdded(this, addedRelations);
+            }
+        }
     }
     
     @Override
@@ -114,7 +124,7 @@ public abstract class ANode
             return;
         }
         for (final IRelation relation : remove) {
-            Assert.isTrue(relation.getSource() == this, "source must be this");
+            Assert.isTrue(relation != null && relation.getSource() == this, "relation must be not null and source must be this");
         }
         for (final IStrategy strategy : this.getRoot().getStrategies()) {
             strategy.removeRelations(this, remove);
@@ -132,7 +142,16 @@ public abstract class ANode
                 this.relations.remove(relation.getType());
             }
         }
-        this.sendRemovedEvent(remove);
+        if (!remove.isEmpty()) {
+            for (final IStrategy strategy : this.getRoot().getStrategies()) {
+                strategy.relationsRemoved(this, remove);
+            }
+            if (this.listeners != null) {
+                for (final IRelationListener listener : this.listeners) {
+                    listener.relationsRemoved(this, remove);
+                }
+            }
+        }
         if (this.getRoot() != null) {
             final Collection<IRelation> selection = this.getRoot().getSelections();
             selection.removeAll(remove);
@@ -151,34 +170,6 @@ public abstract class ANode
         this.listeners.remove(nodeListener);
         if (this.listeners.isEmpty()) {
             this.listeners = null;
-        }
-    }
-    
-    private void sendAddedEvent(final Collection<IRelation> added) {
-        if (added.isEmpty()) {
-            return;
-        }
-        for (final IStrategy strategy : this.getRoot().getStrategies()) {
-            strategy.relationsAdded(this, added);
-        }
-        if (this.listeners != null) {
-            for (final IRelationListener listener : this.listeners) {
-                listener.relationsAdded(this, added);
-            }
-        }
-    }
-    
-    private void sendRemovedEvent(final Collection<IRelation> removed) {
-        if (removed.isEmpty()) {
-            return;
-        }
-        for (final IStrategy strategy : this.getRoot().getStrategies()) {
-            strategy.relationsRemoved(this, removed);
-        }
-        if (this.listeners != null) {
-            for (final IRelationListener listener : this.listeners) {
-                listener.relationsRemoved(this, removed);
-            }
         }
     }
     

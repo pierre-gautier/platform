@@ -8,8 +8,4 @@ Bundle-SymbolicName: platform.ws;singleton:=true
 Bundle-Activator: platform.ws.Activator
 Bundle-Name: Platform WS
 Require-Bundle: platform.model;bundle-version="0.0.0"
-Export-Package: platform.ws;
-  uses:="org.osgi.framework,
-   platform.model,
-   platform.jersey,
-   platform.jetter.model.mapper"
+Export-Package: platform.ws;uses:="org.osgi.framework,platform.model,platform.utils.interfaces"

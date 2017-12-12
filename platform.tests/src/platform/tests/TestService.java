@@ -1,7 +1,6 @@
 package platform.tests;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,15 +8,15 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import platform.jetter.model.NodeDto;
-import platform.jetter.model.NodeDtoServer;
-import platform.jetter.model.RelationDto;
 import platform.model.INode;
 import platform.model.IRoot;
 import platform.model.commons.Descriptors;
 import platform.model.commons.Root;
 import platform.model.utils.NodeUtils;
 import platform.model.utils.TraversalContext;
+import platform.rest.model.NodeDto;
+import platform.rest.model.NodeDtoServer;
+import platform.rest.model.RelationDto;
 import platform.utils.Strings;
 import platform.utils.interfaces.IService;
 
@@ -47,7 +46,8 @@ public class TestService {
     
     private void testDelete() {
         
-        this.service.delete(Arrays.asList("deux", "trois"));
+        this.service.delete("deux");
+        this.service.delete("trois");
         
         Assert.assertEquals(1, this.root.getRelations().size());
         
@@ -64,7 +64,7 @@ public class TestService {
         attributes1.put("label", "belle");
         attributes1.put("active", "false");
         
-        this.service.put(Arrays.asList(new NodeDto("un", "node", attributes1)));
+        this.service.merge(new NodeDto("un", "node", attributes1));
         
         Assert.assertEquals("belle", node.getAttribute(Descriptors.LABEL));
         Assert.assertEquals(Boolean.FALSE, node.getAttribute(Descriptors.ACTIVE));
@@ -73,12 +73,12 @@ public class TestService {
         attributes2.put("active", "prout");
         attributes2.put("label", "gueule");
         
-        this.service.put(Arrays.asList(new NodeDto("un", "node", attributes2)));
+        this.service.merge(new NodeDto("un", "node", attributes2));
         
         Assert.assertEquals(Boolean.FALSE, node.getAttribute(Descriptors.ACTIVE));
         Assert.assertEquals("gueule", node.getAttribute(Descriptors.LABEL));
         
-        this.service.put(Arrays.asList(new NodeDto("un", "node", null)));
+        this.service.merge(new NodeDto("un", "node", null));
         
         Assert.assertEquals(Boolean.TRUE, node.getAttribute(Descriptors.ACTIVE));
         Assert.assertEquals(Strings.EMPTY, node.getAttribute(Descriptors.LABEL));
@@ -96,7 +96,9 @@ public class TestService {
         nodes.add(new NodeDto("deux", "node", attributes));
         nodes.add(new NodeDto("trois", "node", attributes));
         
-        this.service.post(nodes);
+        for (final NodeDto node : nodes) {
+            this.service.merge(node);
+        }
         
         Assert.assertEquals(3, this.root.getRelations().size());
         
@@ -105,7 +107,9 @@ public class TestService {
         Assert.assertNotNull(NodeUtils.find(this.root, new TraversalContext(), "trois"));
         
         try {
-            this.service.post(nodes);
+            for (final NodeDto node : nodes) {
+                this.service.merge(node);
+            }
         } catch (final Exception e) {
             // ignore
         }
@@ -131,7 +135,7 @@ public class TestService {
         
         child1.setRelationships(relationships2);
         
-        this.service.post(Arrays.asList(parent));
+        this.service.merge(parent);
         
         final INode node = NodeUtils.find(this.root, new TraversalContext(), "parent");
         

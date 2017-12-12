@@ -10,18 +10,11 @@ import org.eclipse.core.runtime.FileLocator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 import platform.dao.DaoStrategy;
 import platform.hibernate.HibernateDao;
 import platform.hibernate.model.mapper.NodeEntityMapper;
 import platform.hibernate.model.mapper.RelationEntityMapper;
-import platform.jersey.NodeDtoClient;
-import platform.jersey.RelationDtoClient;
-import platform.jetter.JetterService;
-import platform.jetter.model.NodeDto;
-import platform.jetter.model.NodeDtoServer;
-import platform.jetter.model.TimingService;
 import platform.liquibase.LiquibaseService;
 import platform.model.INode;
 import platform.model.IRelation;
@@ -31,6 +24,11 @@ import platform.model.commons.Root;
 import platform.model.commons.Types;
 import platform.model.factory.NodeFactories;
 import platform.model.factory.RelationFactories;
+import platform.rest.client.model.NodeDtoClient;
+import platform.rest.client.model.RelationDtoClient;
+import platform.rest.model.NodeDto;
+import platform.rest.model.NodeDtoServer;
+import platform.rest.server.RESTServer;
 import platform.sql.DatabaseDescriptor;
 import platform.sql.DatabaseDescriptorFactories;
 import platform.sql.DatabaseService;
@@ -58,12 +56,12 @@ public class TestPerformance {
     private IRoot                           rootClient;
     private XMLStrategy                     xmlStrategy;
     private WSStrategy                      wsStrategy;
-    private JetterService                   jetter;
+    private RESTServer                      server;
     
     @After
     public void after() {
         try {
-            this.jetter.stop();
+            this.server.stop();
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -73,7 +71,7 @@ public class TestPerformance {
     public void before() {
         // server
         
-        this.rootServer = new Root("test-jetter-performance-server");
+        this.rootServer = new Root("test-server-performance-server");
         
         TestPerformance.database.createDatabase(TestPerformance.descriptor);
         try {
@@ -91,16 +89,16 @@ public class TestPerformance {
         
         this.rootServer.addStrategy(new DaoStrategy(this.rootServer, this.nodeDao, this.relationDao));
         
-        final IService<NodeDto> service = new TimingService<>(new NodeDtoServer(this.rootServer, true));
-        this.jetter = new JetterService(TestPerformance.PORT, TestPerformance.API, service);
+        final IService<NodeDto> service = new NodeDtoServer(this.rootServer, true);
+        this.server = new RESTServer(TestPerformance.PORT, TestPerformance.API, service);
         try {
-            this.jetter.startNonBlocking();
+            this.server.startNonBlocking();
         } catch (final Exception e1) {
             e1.printStackTrace();
         }
         // client
-        this.rootClient = new Root("test-jetter-performance-client");
-        this.xmlStrategy = new XMLStrategy(this.rootClient, Configuration.file("test-jetter-performance.xml"), false); //$NON-NLS-1$
+        this.rootClient = new Root("test-server-performance-client");
+        this.xmlStrategy = new XMLStrategy(this.rootClient, Configuration.file("test-server-performance.xml"), false); //$NON-NLS-1$
         
         final IService<INode> nodeService = new NodeDtoClient(this.rootClient, TestPerformance.URL + TestPerformance.API + "/nodes", false);
         final IService<IRelation> relationService = new RelationDtoClient(this.rootClient, TestPerformance.URL + TestPerformance.API + "/relations", false);
@@ -111,25 +109,25 @@ public class TestPerformance {
         this.rootClient.addStrategy(this.wsStrategy);
     }
     
-    @Test
-    public void test1000() {
-        this.test(1000);
-    }
-    
-    @Test
-    public void test10000() {
-        this.test(10 * 1000);
-    }
-    
-    @Test
-    public void test100000() {
-        this.test(100 * 1000);
-    }
-    
-    @Test
-    public void test1000000() {
-        this.test(1000 * 1000);
-    }
+    // @Test
+    // public void test1000() {
+    // this.test(1000);
+    // }
+    //
+    // @Test
+    // public void test10000() {
+    // this.test(10 * 1000);
+    // }
+    //
+    // @Test
+    // public void test100000() {
+    // this.test(100 * 1000);
+    // }
+    //
+    // @Test
+    // public void test1000000() {
+    // this.test(1000 * 1000);
+    // }
     
     private void test(final int number) {
         

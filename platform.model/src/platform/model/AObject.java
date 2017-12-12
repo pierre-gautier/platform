@@ -32,9 +32,9 @@ public abstract class AObject
         this.type = type;
         this.root = root;
         this.attributes = new HashMap<>(1);
-        this.addAttributes(this.getDefaultAttributes());
+        this.internalAddAttributes(this.getDefaultAttributes());
         if (attributes != null) {
-            this.addAttributes(attributes);
+            this.internalAddAttributes(attributes);
         }
     }
     
@@ -50,26 +50,18 @@ public abstract class AObject
         for (final IStrategy strategy : this.getRoot().getStrategies()) {
             strategy.addAttributes(this, values);
         }
-        final Collection<Attribute> modifiedValues = new HashSet<>(values.size());
-        final Collection<Descriptor<?>> descriptorsToRemove = new ArrayList<>(values.size());
-        for (final Attribute value : values) {
-            if (value.getValue() == null || Strings.isNullEmptyOrBlank(value.getValue().toString())) {
-                descriptorsToRemove.add(value.getDescriptor());
-                continue;
-            }
-            descriptorsToRemove.remove(value.getDescriptor());
-            final Object modifiedValue = this.attributes.put(value.getDescriptor(), value.getValue());
-            if (!Objects.equals(modifiedValue, value.getValue())) {
-                modifiedValues.add(Attribute.unchecked(value.getDescriptor(), value.getValue()));
+        final Collection<Attribute> modifiedValues = this.internalAddAttributes(values);
+        if (modifiedValues.isEmpty()) {
+            return;
+        }
+        for (final IStrategy strategy : this.getRoot().getStrategies()) {
+            strategy.attributesChanged(this, modifiedValues);
+        }
+        if (this.listeners != null) {
+            for (final IAttributeListener listener : this.listeners) {
+                listener.attributesChanged(this, modifiedValues);
             }
         }
-        for (final Descriptor<?> descriptor : descriptorsToRemove) {
-            final Object value = this.attributes.remove(descriptor);
-            if (value != null) {
-                modifiedValues.add(Attribute.unchecked(descriptor, value));
-            }
-        }
-        this.sendEvent(modifiedValues);
     }
     
     @Override
@@ -166,18 +158,27 @@ public abstract class AObject
         }
     }
     
-    private void sendEvent(final Collection<Attribute> modifiedValues) {
-        if (modifiedValues.isEmpty()) {
-            return;
-        }
-        for (final IStrategy strategy : this.getRoot().getStrategies()) {
-            strategy.attributesChanged(this, modifiedValues);
-        }
-        if (this.listeners != null) {
-            for (final IAttributeListener listener : this.listeners) {
-                listener.attributesChanged(this, modifiedValues);
+    private Collection<Attribute> internalAddAttributes(final Collection<Attribute> values) {
+        final Collection<Attribute> modifiedValues = new HashSet<>(values.size());
+        final Collection<Descriptor<?>> descriptorsToRemove = new ArrayList<>(values.size());
+        for (final Attribute value : values) {
+            if (value.getValue() == null || Strings.isNullEmptyOrBlank(value.getValue().toString())) {
+                descriptorsToRemove.add(value.getDescriptor());
+                continue;
+            }
+            descriptorsToRemove.remove(value.getDescriptor());
+            final Object modifiedValue = this.attributes.put(value.getDescriptor(), value.getValue());
+            if (!Objects.equals(modifiedValue, value.getValue())) {
+                modifiedValues.add(Attribute.unchecked(value.getDescriptor(), value.getValue()));
             }
         }
+        for (final Descriptor<?> descriptor : descriptorsToRemove) {
+            final Object value = this.attributes.remove(descriptor);
+            if (value != null) {
+                modifiedValues.add(Attribute.unchecked(descriptor, value));
+            }
+        }
+        return modifiedValues;
     }
     
 }

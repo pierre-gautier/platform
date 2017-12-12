@@ -78,6 +78,26 @@ public class CollectionsUtils {
         
     }
     
+    public static final <T> Collection<T> synchronizedCopy(final Collection<T> toCopy, final boolean clear) {
+        synchronized (toCopy) {
+            final Collection<T> copy = new ArrayList<>(toCopy);
+            if (clear) {
+                toCopy.clear();
+            }
+            return copy;
+        }
+    }
+    
+    public static <K, V> Map<K, V> synchronizedCopy(final Map<K, V> map, final boolean clear) {
+        synchronized (map) {
+            final Map<K, V> copy = new HashMap<>(map);
+            if (clear) {
+                map.clear();
+            }
+            return copy;
+        }
+    }
+    
     private CollectionsUtils() {
         // hide constructor
     }

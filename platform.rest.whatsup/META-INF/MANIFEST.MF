@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Eclipse-ExtensibleAPI: true
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: platform.rest.whatsup;singleton:=true
+Bundle-Activator: platform.rest.whatsup.Activator
+Bundle-Name: Platform REST Whatsup
+Require-Bundle: platform.model;bundle-version="0.0.0",
+ platform.whatsup;bundle-version="0.0.0",
+ platform.rest;bundle-version="0.0.0"
+Export-Package: platform.rest.whatsup
