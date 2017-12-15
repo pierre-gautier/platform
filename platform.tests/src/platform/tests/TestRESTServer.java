@@ -14,7 +14,6 @@ import platform.model.commons.Relation;
 import platform.model.commons.Root;
 import platform.model.commons.Types;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.rest.client.model.NodeDtoClient;
 import platform.rest.model.NodeDto;
 import platform.rest.model.NodeDtoServer;
@@ -81,7 +80,7 @@ public class TestRESTServer {
             Assert.fail();
         }
         
-        Assert.assertNotNull(NodeUtils.find(root, new TraversalContext(), "posted1"));
+        Assert.assertNotNull(NodeUtils.find(root, "posted1"));
         
         try {
             server.stop();

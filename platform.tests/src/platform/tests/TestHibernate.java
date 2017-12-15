@@ -28,7 +28,6 @@ import platform.model.commons.Relation;
 import platform.model.commons.Root;
 import platform.model.commons.Types;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.sql.DatabaseDescriptor;
 import platform.sql.DatabaseDescriptorFactories;
 import platform.sql.DatabaseService;
@@ -238,7 +237,7 @@ public class TestHibernate {
     
     public void testUpdate() {
         
-        final INode source = NodeUtils.find(this.root, new TraversalContext(), "1");
+        final INode source = NodeUtils.find(this.root, "1");
         source.addAttribute(Descriptors.LABEL, "la moche");
         source.addAttribute(Descriptors.ID, "666");
         

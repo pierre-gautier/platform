@@ -14,7 +14,6 @@ import platform.model.INode;
 import platform.model.IObject;
 import platform.model.IRoot;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 
 @Creatable
 @Singleton
@@ -43,7 +42,7 @@ public class ACLStrategy
                 && descriptor != ACLDescriptors.RETRIEVE) {
             return null;
         }
-        final INode aclNode = NodeUtils.find(this.root, new TraversalContext(), object.getId());
+        final INode aclNode = NodeUtils.find(this.root, object.getId());
         if (aclNode == null) {
             return null;
         }

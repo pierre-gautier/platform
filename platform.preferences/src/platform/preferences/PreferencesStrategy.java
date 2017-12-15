@@ -11,7 +11,6 @@ import platform.model.INode;
 import platform.model.IObject;
 import platform.model.IRoot;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 
 @Creatable
 @Singleton
@@ -27,7 +26,7 @@ public class PreferencesStrategy
     
     @Override
     public <T> T getAttribute(final IObject object, final Descriptor<T> descriptor, final Object value) {
-        final INode preferenceNode = NodeUtils.find(this.root, new TraversalContext(), object.getId());
+        final INode preferenceNode = NodeUtils.find(this.root, object.getId());
         if (preferenceNode == null) {
             return null;
         }

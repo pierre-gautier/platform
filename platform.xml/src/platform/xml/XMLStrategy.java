@@ -38,7 +38,6 @@ import platform.model.factory.NodeFactories;
 import platform.model.factory.RelationFactories;
 import platform.model.io.Serializer;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.utils.Strings;
 
 public class XMLStrategy
@@ -190,7 +189,7 @@ public class XMLStrategy
                 if (reader.nextTag() == XMLStreamConstants.START_ELEMENT && reader.getLocalName().equals(XMLStrategy.ROOT)) {
                     final INode loadedRoot = XMLStrategy.readNode(reader, this.root);
                     if (loadedRoot != null) {
-                        NodeUtils.merge(this.root, new TraversalContext(), loadedRoot);
+                        NodeUtils.merge(this.root, loadedRoot);
                     }
                     break;
                 }

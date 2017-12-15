@@ -13,7 +13,6 @@ import platform.model.IRoot;
 import platform.model.commons.Descriptors;
 import platform.model.commons.Root;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.rest.model.NodeDto;
 import platform.rest.model.NodeDtoServer;
 import platform.rest.model.RelationDto;
@@ -55,7 +54,7 @@ public class TestService {
     
     private void testPatch() {
         
-        final INode node = NodeUtils.find(this.root, new TraversalContext(), "un");
+        final INode node = NodeUtils.find(this.root, "un");
         
         Assert.assertEquals("moche", node.getAttribute(Descriptors.LABEL));
         Assert.assertEquals(Boolean.TRUE, node.getAttribute(Descriptors.ACTIVE));
@@ -102,9 +101,9 @@ public class TestService {
         
         Assert.assertEquals(3, this.root.getRelations().size());
         
-        Assert.assertNotNull(NodeUtils.find(this.root, new TraversalContext(), "un"));
-        Assert.assertNotNull(NodeUtils.find(this.root, new TraversalContext(), "deux"));
-        Assert.assertNotNull(NodeUtils.find(this.root, new TraversalContext(), "trois"));
+        Assert.assertNotNull(NodeUtils.find(this.root, "un"));
+        Assert.assertNotNull(NodeUtils.find(this.root, "deux"));
+        Assert.assertNotNull(NodeUtils.find(this.root, "trois"));
         
         try {
             for (final NodeDto node : nodes) {
@@ -137,12 +136,12 @@ public class TestService {
         
         this.service.merge(parent);
         
-        final INode node = NodeUtils.find(this.root, new TraversalContext(), "parent");
+        final INode node = NodeUtils.find(this.root, "parent");
         
         Assert.assertNotNull(node);
         Assert.assertEquals(2, node.getRelations().size());
         
-        final INode nodeChild1 = NodeUtils.find(this.root, new TraversalContext(), "child1");
+        final INode nodeChild1 = NodeUtils.find(this.root, "child1");
         
         Assert.assertNotNull(nodeChild1);
         Assert.assertEquals(1, nodeChild1.getRelations().size());

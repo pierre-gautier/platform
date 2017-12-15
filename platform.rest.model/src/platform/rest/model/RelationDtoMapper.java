@@ -5,7 +5,6 @@ import platform.model.INode;
 import platform.model.IRelation;
 import platform.model.factory.RelationFactories;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.utils.interfaces.IMapper;
 
 public class RelationDtoMapper
@@ -30,7 +29,7 @@ public class RelationDtoMapper
     
     @Override
     public IRelation toModel(final RelationDto entity) {
-        return this.toModel(entity, NodeUtils.find(this.nodeMapper.getRoot(), new TraversalContext(), entity.getSourceId()));
+        return this.toModel(entity, NodeUtils.find(this.nodeMapper.getRoot(), entity.getSourceId()));
     }
     
     public IRelation toModel(final RelationDto entity, final INode source) {

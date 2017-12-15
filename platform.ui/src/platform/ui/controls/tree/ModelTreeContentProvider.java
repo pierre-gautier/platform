@@ -37,7 +37,6 @@ import platform.model.IRoot;
 import platform.model.ISelectionListener;
 import platform.model.commons.Descriptors;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.ui.controls.tree.Overlay.Position;
 import platform.ui.swt.SWTUtils;
 
@@ -92,7 +91,7 @@ public class ModelTreeContentProvider
     public void attributesChanged(final IObject object, final Collection<Attribute> attributes) {
         for (final Attribute value : attributes) {
             if (this.labelDescriptors.contains(value.getDescriptor())) {
-                this.viewer.update(NodeUtils.findParentRelation(this.root, new TraversalContext(), object.getId()), null);
+                this.viewer.update(NodeUtils.findParentRelation(this.root, object.getId()), null);
                 break;
             }
         }
@@ -166,7 +165,7 @@ public class ModelTreeContentProvider
     @Override
     public Object getParent(final Object element) {
         final INode parentNode = ((IRelation) element).getSource();
-        return NodeUtils.findParentRelation(this.root, new TraversalContext(), parentNode.getId());
+        return NodeUtils.findParentRelation(this.root, parentNode.getId());
     }
     
     @Override
@@ -211,7 +210,7 @@ public class ModelTreeContentProvider
     
     @Override
     public void relationsRemoved(final INode node, final Collection<IRelation> relations) {
-        final IRelation parentRelation = NodeUtils.findParentRelation(this.root, new TraversalContext(), node.getId());
+        final IRelation parentRelation = NodeUtils.findParentRelation(this.root, node.getId());
         this.viewer.refresh(parentRelation);
     }
     

@@ -28,6 +28,10 @@ public class NodeUtils {
         return 0;
     }
     
+    public static final INode find(final INode node, final String id) {
+        return NodeUtils.find(node, new TraversalContext(), id);
+    }
+    
     public static final INode find(final INode node, final TraversalContext context, final String id) {
         if (NodeUtils.checkContext(context, node)) {
             if (node.getId().equals(id)) {
@@ -48,6 +52,10 @@ public class NodeUtils {
         return null;
     }
     
+    public static final IRelation findParentRelation(final INode node, final String id) {
+        return NodeUtils.findParentRelation(node, new TraversalContext(), id);
+    }
+    
     public static final IRelation findParentRelation(final INode node, final TraversalContext context, final String id) {
         if (NodeUtils.checkContext(context, node)) {
             for (final IRelation relation : node.getRelations()) {
@@ -65,6 +73,10 @@ public class NodeUtils {
         return null;
     }
     
+    public static final IRelation findRelation(final INode node, final String id) {
+        return NodeUtils.findRelation(node, new TraversalContext(), id);
+    }
+    
     public static final IRelation findRelation(final INode node, final TraversalContext context, final String id) {
         if (NodeUtils.checkContext(context, node)) {
             for (final IRelation relation : node.getRelations()) {
@@ -80,6 +92,10 @@ public class NodeUtils {
             }
         }
         return null;
+    }
+    
+    public static void merge(final INode in, final INode toMerge) {
+        NodeUtils.merge(in, new TraversalContext(), toMerge);
     }
     
     public static void merge(final INode in, final TraversalContext context, final INode toMerge) {
@@ -107,6 +123,10 @@ public class NodeUtils {
             }
             in.addRelations(relationsToMerge);
         }
+    }
+    
+    public static void mergeRelation(final IRelation relation, final IRelation toMerge) {
+        NodeUtils.mergeRelation(relation, toMerge);
     }
     
     public static void mergeRelation(final IRelation relation, final TraversalContext context, final IRelation toMerge) {

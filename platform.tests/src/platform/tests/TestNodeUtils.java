@@ -27,7 +27,7 @@ public class TestNodeUtils {
         Assert.assertEquals(TestNodeUtils.NODE_COUNT_FOR_5, NodeUtils.cunt(root, null));
         Assert.assertEquals(TestNodeUtils.NODE_COUNT_FOR_5, NodeUtils.cunt(root, new TraversalContext()));
         Assert.assertNotNull(NodeUtils.find(root, null, this.lastIdCreated));
-        Assert.assertNotNull(NodeUtils.find(root, new TraversalContext(), this.lastIdCreated));
+        Assert.assertNotNull(NodeUtils.find(root, this.lastIdCreated));
         
         final INode parent = root.getRelations().get(0).getTarget()
                 .getRelations().get(0).getTarget()
@@ -39,7 +39,7 @@ public class TestNodeUtils {
         
         // test with context
         Assert.assertEquals(TestNodeUtils.NODE_COUNT_FOR_5, NodeUtils.cunt(root, new TraversalContext()));
-        Assert.assertNotNull(NodeUtils.find(root, new TraversalContext(), this.lastIdCreated));
+        Assert.assertNotNull(NodeUtils.find(root, this.lastIdCreated));
         
         // test without
         Assert.assertNotEquals(TestNodeUtils.NODE_COUNT_FOR_5, NodeUtils.cunt(root, null));
@@ -50,7 +50,7 @@ public class TestNodeUtils {
         
         // test with context
         Assert.assertEquals(TestNodeUtils.NODE_COUNT_FOR_5, NodeUtils.cunt(root, new TraversalContext()));
-        Assert.assertNotNull(NodeUtils.find(root, new TraversalContext(), this.lastIdCreated));
+        Assert.assertNotNull(NodeUtils.find(root, this.lastIdCreated));
         
         // test without
         StackOverflowError expected = null;

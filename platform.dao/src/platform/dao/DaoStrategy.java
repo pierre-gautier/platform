@@ -11,7 +11,6 @@ import platform.model.IObject;
 import platform.model.IRelation;
 import platform.model.IRoot;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.utils.interfaces.IDao;
 
 public class DaoStrategy
@@ -38,9 +37,13 @@ public class DaoStrategy
     
     public void load() {
         final Collection<INode> nodes = this.nodeDao.retrieve(Arrays.asList(this.root.getId()));
+        if (nodes == null || nodes.isEmpty()) {
+            this.nodeDao.create(Arrays.asList(this.root));
+            return;
+        }
         for (final INode node : nodes) {
             if (node.equals(this.root)) {
-                NodeUtils.merge(this.root, new TraversalContext(), node);
+                NodeUtils.merge(this.root, node);
             }
         }
     }
@@ -50,7 +53,7 @@ public class DaoStrategy
         final Collection<INode> nodes = new HashSet<>(added.size());
         final Collection<IRelation> relations = new HashSet<>(added.size());
         for (final IRelation relation : added) {
-            nodes.add(relation.getSource());
+            // TODO bug here when targets are not leafs
             this.extract(relation, nodes, relations);
         }
         this.nodeDao.create(nodes);

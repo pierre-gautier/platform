@@ -11,7 +11,6 @@ import platform.model.IObject;
 import platform.model.IRelation;
 import platform.model.IRoot;
 import platform.model.utils.NodeUtils;
-import platform.model.utils.TraversalContext;
 import platform.utils.collections.CollectionsUtils;
 import platform.utils.interfaces.IService;
 
@@ -59,7 +58,7 @@ public class WSStrategy
             this.nodeService.merge(this.root);
             return;
         }
-        NodeUtils.merge(this.root, new TraversalContext(), node);
+        NodeUtils.merge(this.root, node);
     }
     
     @Override

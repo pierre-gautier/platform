@@ -7,7 +7,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,8 +22,8 @@ import platform.model.utils.TraversalContext;
 import platform.utils.Strings;
 import platform.utils.interfaces.IService;
 
-@Api(value = "relations", produces = MediaType.APPLICATION_JSON, consumes = MediaType.APPLICATION_JSON)
 @Path("/relations")
+@Api(value = "relations", produces = MediaType.APPLICATION_JSON, consumes = MediaType.APPLICATION_JSON)
 public class RelationDtoServer
         implements IService<RelationDto> {
     
@@ -38,14 +37,21 @@ public class RelationDtoServer
         this.relationMapper = new RelationDtoMapper(nodeMapper);
     }
     
+    public void delete(final Collection<String> ids) {
+        for (final String dto : ids) {
+            this.delete(dto);
+        }
+    }
+    
     @DELETE
     @Override
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void delete(@PathParam(value = "id") final String id) {
         if (Strings.isNullEmptyOrBlank(id)) {
             return;
         }
-        final IRelation relation = NodeUtils.findRelation(this.root, new TraversalContext(), id);
+        final IRelation relation = NodeUtils.findRelation(this.root, id);
         if (relation != null) {
             relation.getSource().removeRelations(Arrays.asList(relation));
         }
@@ -59,16 +65,13 @@ public class RelationDtoServer
         if (Strings.isNullEmptyOrBlank(id)) {
             return null;
         }
-        final IRelation relation = NodeUtils.findRelation(this.root, new TraversalContext(), id);
+        final IRelation relation = NodeUtils.findRelation(this.root, id);
         if (relation != null) {
             return this.relationMapper.toEntity(relation);
         }
         throw new NotFoundException();
     }
     
-    @POST
-    @Path("/batch")
-    @Consumes(MediaType.APPLICATION_JSON)
     public void merge(final Collection<RelationDto> dtos) {
         for (final RelationDto dto : dtos) {
             this.merge(dto);
@@ -78,18 +81,18 @@ public class RelationDtoServer
     @PUT
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
-    public void merge(final RelationDto entity) {
-        if (entity == null) {
+    public void merge(final RelationDto dto) {
+        if (dto == null) {
             return;
         }
-        final IRelation relation = NodeUtils.findRelation(this.root, new TraversalContext(), entity.getId());
+        final IRelation relation = NodeUtils.findRelation(this.root, dto.getId());
         if (relation != null) {
-            NodeUtils.mergeRelation(relation, new TraversalContext(), this.relationMapper.toModel(entity));
+            NodeUtils.mergeRelation(relation, new TraversalContext(0, 0), this.relationMapper.toModel(dto));
             return;
         }
-        final INode source = NodeUtils.find(this.root, new TraversalContext(), entity.getSourceId());
+        final INode source = NodeUtils.find(this.root, dto.getSourceId());
         if (source != null) {
-            source.addRelations(Arrays.asList(this.relationMapper.toModel(entity)));
+            source.addRelations(Arrays.asList(this.relationMapper.toModel(dto)));
         }
     }
     
